@@ -1,7 +1,7 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+ */// Link to github https://github.com/trayj23/CA1
 package ca1;
 
 import java.io.BufferedReader; 
