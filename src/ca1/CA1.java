@@ -214,7 +214,7 @@ public class CA1 {
                         {
                         if(number > 0 && number < 9) //if classes between 1 and 8, proceed with validation
                         {
-                            if(yearCourse.length() >= 6) //if student number greater than 6 characters, proceed with validation
+                            if(yearCourse.length() > 6) //if student number greater than 6 characters and less than 8, proceed with validation
                             {
                             String check1 = yearCourse.substring(0, 2); //pulling first 2 characters in student number to begin validation for 20 or higher
                             int check2 = Integer.parseInt(check1); //changing check1 from string to integer
@@ -233,14 +233,20 @@ public class CA1 {
                                     }       
                                     else if(status == false && status1 == true) //if 2 letters proceed with validation next 3 as numbers
                                     {
-                                    String check5 = yearCourse.substring(4,7); //pullling next 3 characters from student number into new variable to validate less than 200
-                                    int check6 = Integer.parseInt(check5); //changing from string to integer
-                                                        
-                                        if(check6 < 200 && check6 > 1) //if next 3 characters less than 200 and greater than 1, proceed with amendtments and output to csv.
+                                        if(yearCourse.length() > 7) //if student number length greater than 7, helpful message
                                         {
-                                        lastName = splitName[1]; //last name variable pulling from split first and second name array
-                                        nameAmend1 = lastName.concat(note);//adding last name and - to nameAmend1
-                                        finalOutput = nameAmend1.concat(yearCourse); //adding name - and student number together into final output string
+                                        System.out.println("Issue with student number");
+                                        }
+                                        else
+                                        {
+                                        String check5 = yearCourse.substring(4,7); //pulling next 3 characters from student number into new variable to validate less than 200
+                                        int check6 = Integer.parseInt(check5); //changing from string to integer
+                                                        
+                                            if(check6 < 200 && check6 > 1) //if next 3 characters less than 200 and greater than 1, proceed with amendtments and output to csv.
+                                            {
+                                            lastName = splitName[1]; //last name variable pulling from split first and second name array
+                                            nameAmend1 = lastName.concat(note);//adding last name and - to nameAmend1
+                                            finalOutput = nameAmend1.concat(yearCourse); //adding name - and student number together into final output string
 
                                             if(number == 1) //if statement to decide what to call the number of classes the student has. if 1, proceed with 
                                             {
@@ -263,11 +269,19 @@ public class CA1 {
                                             fw.write(workload); //add new classes string to .csv
                                             fw.write("\n"); //proceed to next row for next loop
                                         }
+                                        }
                                     }
                                     else //if both checks are true, proceed with 3 next 3 characters and validate between 1-200
-                                    {                       
-                                    String check7 = yearCourse.substring(5,8); //pulling next 3 characters into separate variable
-                                    int check8 = Integer.parseInt(check7); //changing 3 characters to an integer
+                                    {
+                                        if(yearCourse.length() > 8) //if greater than 8, helpful message
+                                        {
+                                        System.out.println("Issue with Student name");
+                                        }
+                                        else
+                                        {
+                                        String check7 = yearCourse.substring(5,8);
+                                         //pulling next 3 characters into separate variable
+                                        int check8 = Integer.parseInt(check7); //changing 3 characters to an integer
                                                         
                                         if(check8 < 200 && check8 > 1) //if less than 200 and higher than 1, proceed with amendments
                                         {
@@ -296,6 +310,7 @@ public class CA1 {
                                             fw.write(workload); //add workload to .csv
                                             fw.write("\n");} //next row for next loop
                                         }
+                                        }
                                     }
                                     else if(check2 < 20) //else if number less than 20 in student number, (2020) helpful message 
                                     {
@@ -303,7 +318,7 @@ public class CA1 {
                                     System.out.println("Student year less than 20 on row: " +x+ " in text file for student:" +Name);
                                     }
                             }
-                            else //helpful message
+                            else//helpful message
                             {
                             int x = i-1;
                             System.out.println("Not enough characters in row:"+x);
@@ -324,7 +339,6 @@ public class CA1 {
                 }
             }
             fw.close(); //close writer
-            System.out.println("Success! Check .csv file");
             }
             catch (IOException e)  //catch exception for try               
                 {               
